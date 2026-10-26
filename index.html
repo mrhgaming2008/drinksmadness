@@ -7,15 +7,12 @@
 <title>Drinks Madness</title>
 <link rel="icon" type="image/jpeg" href="/favicon.png.jpg">
 <link rel="apple-touch-icon" href="/favicon.png.jpg">
-
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FoodEstablishment","name":"Drinks Madness","description":"Mobile drinks stall based in East London, bringing refreshing matcha, lattes, and mojitos to events and celebrations.","servesCuisine":"Beverages, Coffee, Matcha, Mocktails","address":{"@type":"PostalAddress","addressLocality":"East London","addressCountry":"UK"},"url":"https://www.drinksmadness.com/","hasMenu":{"@type":"Menu","name":"Drinks Madness Menu"}}
 </script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{--tint:#1a3328;scroll-behavior:smooth;background:#20372f}
@@ -26,7 +23,6 @@ a{text-decoration:none;color:inherit}
 button{font-family:inherit}
 img{max-width:100%}
 .container{width:90%;max-width:1100px;margin:0 auto}
-
 /* HEADER & NAV */
 .header{background:#20372f;transition:background-color .9s ease,box-shadow .9s ease;padding:20px 0;position:-webkit-sticky;position:sticky;top:0;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.1)}
 .header-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
@@ -44,12 +40,10 @@ img{max-width:100%}
 .close-menu:hover{color:#cbd94d}
 .mobile-nav{display:flex;flex-direction:column;gap:25px;margin-top:30px}
 .mobile-nav .nav-btn{font-size:18px;text-align:left;width:100%}
-
 /* PAGES */
 .page-section{display:none;animation:fadeIn .4s ease-in-out}
 .page-section.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
 /* HERO */
 .hero{background:radial-gradient(circle at 90% 20%,#3f6559 0%,transparent 40%),radial-gradient(circle at 10% 80%,#2a473d 0%,transparent 40%),#20372f;padding:100px 0 110px;overflow:hidden}
 .hero-content{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:70px}
@@ -65,13 +59,11 @@ img{max-width:100%}
 .button-secondary{background:transparent;border:1px solid #fff9ec;color:#fff9ec}
 .button-secondary:hover{background:rgba(255,249,236,.1)}
 .hero-image img,.featured-image img{width:100%;aspect-ratio:6/10;height:auto;object-fit:cover;border-radius:12px;display:block;box-shadow:0 30px 60px rgba(15,28,24,.6)}
-
 /* SECTIONS */
 .section{padding:110px 0}
 .section-heading{text-align:center;margin-bottom:60px}
 .section-heading .small{color:#3f6559;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:3px}
 .section-heading h2{font-size:clamp(42px,6vw,64px);line-height:1;margin-top:12px;color:#20372f}
-
 /* MENU */
 .menu-section{background:#fff9ec}
 .menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:35px}
@@ -84,7 +76,6 @@ img{max-width:100%}
 .menu-item-name{font-weight:700;font-size:17px}
 .menu-price{color:#3f6559;font-weight:700;white-space:nowrap;font-size:17px}
 .menu-item-desc{font-size:14px;color:#667d73;margin-top:6px;line-height:1.5;font-style:italic;padding-right:20px}
-
 /* FEATURED */
 .featured{background:#20372f;color:#fff9ec}
 .featured-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:70px}
@@ -92,15 +83,19 @@ img{max-width:100%}
 .featured-text .small{color:#cbd94d;text-transform:uppercase;letter-spacing:3px;font-weight:700;font-size:12px}
 .featured-text h2{font-size:clamp(48px,6vw,72px);line-height:.95;margin:20px 0 25px;color:#fff9ec}
 .featured-text p{font-size:19px;color:#b8dfce;max-width:460px;line-height:1.8}
-
 /* GALLERY: SCROLL-DRIVEN SHOWCASE */
 #page-gallery{background:var(--tint);padding:0;transition:background-color .9s ease}
+#page-gallery:not(.active){display:none!important;visibility:hidden;pointer-events:none;height:0;overflow:hidden}
+#page-gallery:not(.active) .gallery-visuals,
+#page-gallery:not(.active) .gallery-content,
+#page-gallery:not(.active) .gallery-rail{display:none!important;visibility:hidden!important}
 #page-gallery .section-heading{padding:80px 20px 0}
 .gallery-wrapper{position:relative;isolation:isolate}
 .gallery-visuals{position:-webkit-sticky;position:sticky;top:0;width:100%;height:100vh;height:100svh;min-height:460px;z-index:1;overflow:hidden;pointer-events:none}
 .gallery-visuals img{--d:1;--a:1;position:absolute;left:var(--img-x,50%);top:var(--img-y,36%);width:min(34svh,58vw,330px);height:auto;aspect-ratio:3/5;object-fit:cover;border-radius:20px;opacity:0;transform:translate(-50%,calc(-50% + var(--d)*80px)) rotate(calc(var(--d)*-5deg)) scale(calc(1 - var(--a)*.1));box-shadow:0 40px 80px rgba(0,0,0,.55);will-change:transform,opacity}
 #img-matchas{opacity:1}
-.gallery-rail{position:absolute;right:clamp(10px,2.5vw,32px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px;z-index:5;pointer-events:auto}
+.gallery-rail{display:none;position:absolute;right:clamp(10px,2.5vw,32px);top:50%;transform:translateY(-50%);flex-direction:column;gap:14px;z-index:5;pointer-events:auto}
+body.on-gallery .gallery-rail{display:flex}
 .gallery-rail button{position:relative;width:10px;height:10px;padding:0;border-radius:99px;border:1px solid rgba(255,249,236,.5);background:transparent;cursor:pointer;transition:height .45s cubic-bezier(.16,1,.3,1),background-color .3s,border-color .3s}
 .gallery-rail button::after{content:"";position:absolute;inset:-8px -10px}
 .gallery-rail button[aria-current="true"]{height:30px;background:#cbd94d;border-color:#cbd94d}
@@ -136,7 +131,6 @@ img{max-width:100%}
 .drink-option{transition:none;transform:none}
 .gallery-rail button{transition:none}
 }
-
 /* ABOUT */
 .about{background:#fff9ec}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
@@ -145,14 +139,12 @@ img{max-width:100%}
 .about-box{background:#3f6559;padding:60px 50px;border-radius:16px;color:#fff9ec;min-width:0;box-shadow:0 20px 40px rgba(32,55,47,.15)}
 .about-box h3{color:#cbd94d;font-size:34px;margin-bottom:20px}
 .about-box p{color:#b8dfce;font-size:17px;line-height:1.7}
-
 /* PRIVACY */
 .legal-page{background:#fff9ec;padding:80px 0}
 .legal-content{max-width:800px;margin:0 auto;background:#fff;padding:50px;border-radius:16px;box-shadow:0 15px 40px rgba(32,55,47,.04);border:1px solid rgba(63,101,89,.1)}
 .legal-content h2{font-size:36px;margin-bottom:20px}
 .legal-content h3{font-size:22px;color:#3f6559;margin-top:30px;margin-bottom:12px;font-family:'DM Sans',sans-serif}
 .legal-content p{font-size:15px;color:#667d73;margin-bottom:15px;line-height:1.6}
-
 /* BOOKING */
 .booking{background:#b8dfce;text-align:center;padding:120px 0}
 .booking h2{font-size:clamp(48px,6vw,76px);line-height:1}
@@ -162,7 +154,6 @@ img{max-width:100%}
 .social-links{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin-top:30px}
 .social-button{display:inline-flex;align-items:center;justify-content:center;border:1px solid #3f6559;color:#20372f;padding:14px 26px;border-radius:50px;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;transition:all .3s ease}
 .social-button:hover{background:#20372f;color:#fff9ec;border-color:#20372f}
-
 /* FOOTER */
 .footer{background:#182a24;transition:background-color .9s ease;color:#fff9ec;padding:50px 0}
 body.on-gallery .header{background:var(--tint);box-shadow:none}
@@ -172,7 +163,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
 .footer p,.footer a{font-size:13px;color:#8da69b}
 .footer a:hover{color:#cbd94d;text-decoration:underline}
 .footer-links{display:flex;gap:20px;margin-top:5px;flex-wrap:wrap;justify-content:center}
-
 /* COOKIE BANNER */
 .cookie-banner{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);width:calc(100% - 32px);max-width:600px;background:#182a24;color:#fff9ec;border:1px solid rgba(203,217,77,.35);border-radius:16px;padding:20px 22px;z-index:10050;box-shadow:0 20px 50px rgba(0,0,0,.4);margin-bottom:env(safe-area-inset-bottom,0px)}
 .cookie-banner[hidden]{display:none}
@@ -180,7 +170,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
 .cookie-banner a{color:#cbd94d;text-decoration:underline}
 .cookie-actions{display:flex;gap:10px;flex-wrap:wrap}
 .cookie-actions .button{padding:11px 22px;font-size:12px}
-
 /* RESPONSIVE */
 @media (max-width:1000px) and (min-width:801px){
 .hero-content{gap:40px}
@@ -208,9 +197,7 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
 }
 </style>
 </head>
-
 <body>
-
 <header class="header">
     <div class="container header-inner">
         <div class="logo" onclick="switchPage('home')">DRINKS MADNESS</div>
@@ -224,9 +211,7 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
         <button class="hamburger" onclick="openMenu()" aria-label="Open Menu"><span></span><span></span><span></span></button>
     </div>
 </header>
-
 <div class="side-menu-overlay" id="sideMenuOverlay" onclick="closeMenu()"></div>
-
 <div class="side-menu" id="sideMenu">
     <button class="close-menu" onclick="closeMenu()" aria-label="Close Menu">&times;</button>
     <nav class="mobile-nav">
@@ -238,9 +223,7 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
         <button class="nav-btn" id="mob-nav-privacy" onclick="switchPage('privacy')" style="color:#b8dfce;font-size:14px;margin-top:10px;">Privacy &amp; Legal</button>
     </nav>
 </div>
-
 <main id="main-content">
-
     <!-- HOME -->
     <div id="page-home" class="page-section active">
         <section class="hero">
@@ -259,7 +242,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
                 </div>
             </div>
         </section>
-
         <section class="section featured">
             <div class="container featured-grid">
                 <div class="featured-image">
@@ -273,7 +255,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
             </div>
         </section>
     </div>
-
     <!-- MENU -->
     <div id="page-menu" class="page-section">
         <section class="section menu-section">
@@ -283,7 +264,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
                     <h2>Our Menu</h2>
                     <p style="margin-top:10px;font-size:15px;color:#667d73;">Please inform us of any allergies or dietary requirements when booking.</p>
                 </div>
-
                 <div class="menu-grid">
                     <div class="menu-card">
                         <h3>Matcha</h3>
@@ -291,14 +271,12 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
                         <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Vanilla Matcha</span><span class="menu-price">£4.00</span></div><div class="menu-item-desc">Matcha, water, milk, and ice, sweetened with premium vanilla syrup.</div></div>
                         <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Caramel Matcha</span><span class="menu-price">£4.00</span></div><div class="menu-item-desc">Matcha, water, milk, and ice, blended with premium caramel syrup.</div></div>
                     </div>
-
                     <div class="menu-card">
                         <h3>Iced Latte</h3>
                         <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Iced Latte</span><span class="menu-price">£3.50</span></div><div class="menu-item-desc">Smooth coffee concentrate poured over ice and milk.</div></div>
                         <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Iced Vanilla Latte</span><span class="menu-price">£4.00</span></div><div class="menu-item-desc">Coffee concentrate, milk, and ice, sweetened with premium vanilla syrup.</div></div>
                         <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Iced Caramel Latte</span><span class="menu-price">£4.00</span></div><div class="menu-item-desc">Coffee concentrate, milk, and ice, finished with premium caramel syrup.</div></div>
                     </div>
-
                     <div class="menu-card">
                         <h3>Matcha Spanish</h3>
                         <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Matcha Spanish Latte</span><span class="menu-price">£4.00</span></div><div class="menu-item-desc">Matcha powder, water, and milk over ice, enriched with sweetened condensed milk.</div></div>
@@ -306,7 +284,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
                         <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Caramel Matcha Spanish</span><span class="menu-price">£4.50</span></div><div class="menu-item-desc">Our iced Matcha Spanish layered with premium caramel syrup.</div></div>
                         <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Pistachio Matcha Spanish</span><span class="menu-price">£5.00</span></div><div class="menu-item-desc">Our iced Matcha Spanish blended with rich pistachio sauce.</div></div>
                     </div>
-
                     <div class="menu-card">
                         <h3>Spanish Latte</h3>
                         <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Original Spanish Latte</span><span class="menu-price">£4.00</span></div><div class="menu-item-desc">Coffee concentrate, milk, and ice, enriched with sweetened condensed milk.</div></div>
@@ -314,7 +291,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
                         <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Caramel Spanish Latte</span><span class="menu-price">£4.50</span></div><div class="menu-item-desc">Our iced Spanish Latte layered with premium caramel syrup.</div></div>
                         <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Pistachio Spanish Latte</span><span class="menu-price">£5.00</span></div><div class="menu-item-desc">Our iced Spanish Latte blended with rich pistachio sauce.</div></div>
                     </div>
-
                     <div class="menu-card full">
                         <h3>Mojitos</h3>
                         <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Mint Mojito</span><span class="menu-price">£3.50</span></div><div class="menu-item-desc">Premium mint syrup, lime juice, and lemonade over ice, garnished with fresh mint leaves.</div></div>
@@ -324,7 +300,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
             </div>
         </section>
     </div>
-
     <!-- GALLERY -->
     <div id="page-gallery" class="page-section">
         <div class="section-heading" style="margin-bottom:0;">
@@ -332,7 +307,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
             <h2 style="color:#fff9ec;">Explore The Pours</h2>
             <p style="margin-top:15px;color:#8da69b;font-size:16px;">Scroll down to experience the menu.</p>
         </div>
-
         <section class="gallery-wrapper">
             <div class="gallery-visuals">
                 <img id="img-matchas" src="https://drive.google.com/thumbnail?id=1HlTKUGdMAr4xRb13KAohwgjvT_aBC7X1&sz=w1200" alt="Drinks Madness Matcha Collection" decoding="async">
@@ -343,7 +317,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
                 <img id="img-strawberry" src="https://drive.google.com/thumbnail?id=1VpuUiCHfgOTqoe4oB28vOLg924_kjWeu&sz=w1200" alt="Strawberry Mojito" decoding="async">
                 <nav class="gallery-rail" id="galleryRail" aria-label="Gallery progress"></nav>
             </div>
-
             <div class="gallery-content">
                 <div class="gallery-step is-active" data-image="img-matchas">
                     <div class="step-card">
@@ -361,7 +334,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
                         </div>
                     </div>
                 </div>
-
                 <div class="gallery-step" data-image="img-pistachio-matcha">
                     <div class="step-card">
                         <div class="gallery-step-small">SIGNATURE SERIES</div>
@@ -371,7 +343,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
                         <div class="drink-options"><span class="drink-option">Pistachio Matcha Spanish</span></div>
                     </div>
                 </div>
-
                 <div class="gallery-step" data-image="img-lattes">
                     <div class="step-card">
                         <div class="gallery-step-small">ESPRESSO BAR</div>
@@ -388,7 +359,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
                         </div>
                     </div>
                 </div>
-
                 <div class="gallery-step" data-image="img-pistachio-latte">
                     <div class="step-card">
                         <div class="gallery-step-small">SIGNATURE SERIES</div>
@@ -398,7 +368,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
                         <div class="drink-options"><span class="drink-option">Pistachio Spanish Latte</span></div>
                     </div>
                 </div>
-
                 <div class="gallery-step" data-image="img-mint">
                     <div class="step-card">
                         <div class="gallery-step-small">REFRESHERS</div>
@@ -408,7 +377,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
                         <div class="drink-options"><span class="drink-option">Mint Mojito</span></div>
                     </div>
                 </div>
-
                 <div class="gallery-step" data-image="img-strawberry">
                     <div class="step-card">
                         <div class="gallery-step-small">REFRESHERS</div>
@@ -421,7 +389,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
             </div>
         </section>
     </div>
-
     <!-- ABOUT -->
     <div id="page-about" class="page-section">
         <section class="section about">
@@ -441,7 +408,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
             </div>
         </section>
     </div>
-
     <!-- BOOK -->
     <div id="page-book" class="page-section">
         <section class="section booking">
@@ -457,7 +423,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
             </div>
         </section>
     </div>
-
     <!-- PRIVACY -->
     <div id="page-privacy" class="page-section">
         <section class="legal-page">
@@ -479,9 +444,7 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
             </div>
         </section>
     </div>
-
 </main>
-
 <footer class="footer">
     <div class="container footer-inner">
         <div class="footer-logo logo">DRINKS MADNESS</div>
@@ -493,7 +456,6 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
         </div>
     </div>
 </footer>
-
 <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie consent" hidden>
     <p>We use Google Analytics cookies to see how many people visit the site and which pages they view. They are only switched on if you accept. See our <a href="#" onclick="switchPage('privacy'); return false;">Privacy Policy</a>.</p>
     <div class="cookie-actions">
@@ -501,10 +463,8 @@ body.on-gallery .footer{background-color:var(--tint);background-image:linear-gra
         <button type="button" class="button button-secondary" style="color:#fff9ec;border-color:#fff9ec" onclick="setCookieConsent('denied')">DECLINE</button>
     </div>
 </div>
-
 <script>
 const pages = ['home', 'menu', 'gallery', 'about', 'book', 'privacy'];
-
 function switchPage(targetPage) {
     pages.forEach(page => {
         const section = document.getElementById('page-' + page);
@@ -514,19 +474,16 @@ function switchPage(targetPage) {
             if (btn) btn.classList.remove('active');
         });
     });
-
     const target = document.getElementById('page-' + targetPage);
     if (target) target.classList.add('active');
     ['nav-', 'mob-nav-'].forEach(prefix => {
         const btn = document.getElementById(prefix + targetPage);
         if (btn) btn.classList.add('active');
     });
-
     document.body.classList.toggle('on-gallery', targetPage === 'gallery');
     if (window.gtag) gtag('event', 'page_view', { page_title: 'Drinks Madness - ' + targetPage, page_path: '/' + targetPage });
     closeMenu();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
     if (targetPage === 'gallery') {
         requestAnimationFrame(() => {
             handleGalleryScroll();
@@ -534,26 +491,22 @@ function switchPage(targetPage) {
         });
     }
 }
-
 /* MOBILE MENU */
 function openMenu() {
     document.getElementById('sideMenu').classList.add('active');
     document.getElementById('sideMenuOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
 }
-
 function closeMenu() {
     document.getElementById('sideMenu').classList.remove('active');
     document.getElementById('sideMenuOverlay').classList.remove('active');
     document.body.style.overflow = '';
 }
-
 document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape' && document.getElementById('sideMenu').classList.contains('active')) {
         closeMenu();
     }
 });
-
 /* GALLERY: SCROLL-DRIVEN SHOWCASE */
 const GALLERY_TINTS = {
     'img-matchas':          '#1a3328',
@@ -563,30 +516,24 @@ const GALLERY_TINTS = {
     'img-mint':             '#16362f',
     'img-strawberry':       '#3a1f29'
 };
-
 const galleryReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let galleryState = null;
 let galleryQueued = false;
 let galleryActiveItem = null;
-
 function clamp(value, min, max) {
     return Math.min(max, Math.max(min, value));
 }
-
 function buildGallery() {
     const page = document.getElementById('page-gallery');
     const rail = document.getElementById('galleryRail');
     const images = {};
-
     page.querySelectorAll('.gallery-visuals img').forEach(img => { images[img.id] = img; });
-
     const items = Array.from(page.querySelectorAll('.gallery-step')).map(step => {
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.setAttribute('aria-label', 'Go to ' + step.querySelector('h2').textContent);
         dot.addEventListener('click', () => scrollToGalleryStep(step));
         rail.appendChild(dot);
-
         return {
             step,
             dot,
@@ -595,49 +542,37 @@ function buildGallery() {
             d: null   // eased position; null until the first frame so nothing sweeps on load
         };
     });
-
     return { page, items };
 }
-
 function scrollToGalleryStep(step) {
     const rect = step.getBoundingClientRect();
     const top = window.scrollY + rect.top + rect.height / 2 - window.innerHeight / 2;
     window.scrollTo({ top, behavior: galleryReduceMotion.matches ? 'auto' : 'smooth' });
 }
-
 function setActiveGalleryItem(item) {
     galleryActiveItem = item;
-
     galleryState.items.forEach(other => {
         const isActive = other === item;
         other.step.classList.toggle('is-active', isActive);
         other.dot.setAttribute('aria-current', isActive ? 'true' : 'false');
     });
-
     const tint = GALLERY_TINTS[item.step.dataset.image];
     if (tint) document.documentElement.style.setProperty('--tint', tint);
 }
-
 function galleryFrame() {
     galleryQueued = false;
-
     const page = document.getElementById('page-gallery');
     if (!page || !page.classList.contains('active')) return;
-
     if (!galleryState) galleryState = buildGallery();
-
     const still = galleryReduceMotion.matches;
     const viewportCenter = window.innerHeight / 2;
     let settled = true;
     let nearest = null;
     let nearestDistance = Infinity;
-
     for (const item of galleryState.items) {
         const rect = item.step.getBoundingClientRect();
-
         // -1.5 to 1.5: 0 = step centred, ±1 = one full step away
         const target = clamp((rect.top + rect.height / 2 - viewportCenter) / rect.height, -1.5, 1.5);
-
         if (item.d === null || still) {
             item.d = target;
         } else {
@@ -645,83 +580,66 @@ function galleryFrame() {
             if (Math.abs(target - item.d) > 0.001) settled = false;
             else item.d = target;
         }
-
         if (Math.abs(target) < nearestDistance) {
             nearestDistance = Math.abs(target);
             nearest = item;
         }
-
         const d = still ? 0 : item.d;
         const abs = Math.abs(item.d);
-
         if (item.image) {
             item.image.style.opacity = clamp((0.8 - abs) / 0.5, 0, 1).toFixed(3);
             item.image.style.zIndex = abs < 0.5 ? 2 : 1;
             item.image.style.setProperty('--d', d.toFixed(4));
             item.image.style.setProperty('--a', (still ? 0 : abs).toFixed(4));
         }
-
         item.card.style.opacity = clamp(1 - (abs - 0.12) / 0.38, 0, 1).toFixed(3);
         item.card.style.setProperty('--d', d.toFixed(4));
     }
-
     if (nearest && nearest !== galleryActiveItem) setActiveGalleryItem(nearest);
-
     if (!settled) {
         galleryQueued = true;
         requestAnimationFrame(galleryFrame);
     }
 }
-
 function handleGalleryScroll() {
     if (galleryQueued) return;
     galleryQueued = true;
     requestAnimationFrame(galleryFrame);
 }
-
 window.addEventListener('scroll', handleGalleryScroll, { passive: true });
 window.addEventListener('resize', handleGalleryScroll, { passive: true });
 window.addEventListener('load', handleGalleryScroll);
-
 /* COOKIE CONSENT + GOOGLE ANALYTICS */
 const GA_ID = 'G-WTRDJ5W9KK';
 const CONSENT_KEY = 'dm-cookie-consent';
-
 function getConsent() {
     try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
 }
-
 function loadAnalytics() {
     if (window.gaLoaded) return;
     window.gaLoaded = true;
     window['ga-disable-' + GA_ID] = false;
-
     const script = document.createElement('script');
     script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
     document.head.appendChild(script);
-
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { dataLayer.push(arguments); };
     gtag('js', new Date());
     gtag('config', GA_ID);
 }
-
 function setCookieConsent(value) {
     try { localStorage.setItem(CONSENT_KEY, value); } catch (e) {}
     document.getElementById('cookieBanner').hidden = true;
-
     if (value === 'granted') {
         loadAnalytics();
     } else {
         window['ga-disable-' + GA_ID] = true;
     }
 }
-
 function openCookieBanner() {
     document.getElementById('cookieBanner').hidden = false;
 }
-
 (function initConsent() {
     const consent = getConsent();
     if (consent === 'granted') loadAnalytics();
@@ -729,6 +647,5 @@ function openCookieBanner() {
     else openCookieBanner();
 })();
 </script>
-
 </body>
 </html>
