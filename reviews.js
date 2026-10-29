@@ -6,4 +6,4 @@ window.DM_REVIEWS = [
 ];
 /* GOOGLE REVIEW LINK. Paste your Google review link between the quotes. A "Leave a review" link then appears in the footer.
    Leave it empty ("") and the link stays hidden. */
-window.DM_REVIEW_LINK = "";
+window.DM_REVIEW_LINK = "https://g.page/r/CW-I7JpLRvcVEBM/review";
