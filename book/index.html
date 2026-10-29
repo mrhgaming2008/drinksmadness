@@ -76,9 +76,9 @@
                     <h2>Plan your event</h2>
                     <p>Please book at least one month in advance. Add a few details and we will open a message ready to send. Nothing is sent until you press send.</p>
                     <div class="qgrid">
-                        <label for="qDate">Event date<input type="date" id="qDate"></label>
-                        <label for="qLoc">Location<input type="text" id="qLoc" placeholder="Area or venue" autocomplete="off"></label>
-                        <label for="qGuests">Number of guests<input type="number" id="qGuests" min="1" inputmode="numeric" placeholder="For example, 60"></label>
+                        <label for="qDate">Event date<input type="date" id="qDate" aria-describedby="qDateErr"><span class="field-error" id="qDateErr" aria-live="polite"></span></label>
+                        <label for="qLoc">Location<input type="text" id="qLoc" placeholder="Area or venue" autocomplete="off" aria-describedby="qLocErr"><span class="field-error" id="qLocErr" aria-live="polite"></span></label>
+                        <label for="qGuests">Number of guests<input type="number" id="qGuests" min="1" inputmode="numeric" placeholder="For example, 60" aria-describedby="qGuestsErr"><span class="field-error" id="qGuestsErr" aria-live="polite"></span></label>
                         <label for="qType">Event type<select id="qType"><option>Wedding</option><option>Corporate gathering</option><option>Brand activation</option><option>Private celebration</option><option>Something else</option></select></label>
                         <label for="qPay">How would you like to pay?<select id="qPay"><option>Pay per drink</option><option>Unlimited drinks until stock runs out</option><option>Not sure yet</option></select></label>
                     </div>
