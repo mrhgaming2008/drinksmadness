@@ -359,7 +359,21 @@ document.addEventListener('click', e => {
         g('qWa').href = 'https://wa.me/447442453031?text=' + encodeURIComponent(text);
     }
     ['qDate', 'qLoc', 'qGuests', 'qType', 'qPay'].forEach(id => g(id).addEventListener('input', update));
+    const qs = new URLSearchParams(location.search);
+    const wantType = qs.get('type');
+    if (wantType && Array.from(g('qType').options).some(o => o.value === wantType)) g('qType').value = wantType;
     update();
+
+    /* Date check: free, already booked, or less than a month away */
+    function checkDate() {
+        const v = g('qDate').value, el = g('qDateErr');
+        el.className = 'field-error';
+        if (!v) { el.textContent = ''; return ''; }
+        const days = (new Date(v + 'T00:00:00') - new Date()) / 864e5;
+        if ((window.BOOKED_DATES || []).indexOf(v) > -1) { el.textContent = "Sorry, we are already booked on that date. Please try another day."; return 'booked'; }
+        if (days < 30) { el.textContent = 'That date is less than a month away. We ask for bookings at least one month in advance.'; return 'soon'; }
+        el.textContent = "Looks free. Send us your details and we'll confirm."; el.classList.add('ok'); return 'free';
+    }
 
     /* Inline checks: each problem is shown next to its field and focus moves to the first one */
     const FIELDS = [['qDate', 'qDateErr', 'Choose your event date.'], ['qLoc', 'qLocErr', 'Add the area or venue.'], ['qGuests', 'qGuestsErr', 'Add roughly how many guests.']];
@@ -372,11 +386,13 @@ document.addEventListener('click', e => {
             g(errId).textContent = bad ? msg : '';
             if (bad && !first) first = el;
         });
-        const d = g('qDate').value;
-        if (d && (new Date(d) - new Date()) / 864e5 < 30) g('qDateErr').textContent = 'We ask for bookings at least one month in advance.';
+        if (g('qDate').value) {
+            if (checkDate() === 'booked') { g('qDate').setAttribute('aria-invalid', 'true'); if (!first) first = g('qDate'); }
+        }
         return first;
     }
     FIELDS.forEach(([id, errId]) => g(id).addEventListener('input', () => { g(id).setAttribute('aria-invalid', 'false'); g(errId).textContent = ''; }));
+    g('qDate').addEventListener('input', checkDate);
     ['qMail', 'qWa'].forEach(id => g(id).addEventListener('click', e => {
         const first = validate();
         if (first) { e.preventDefault(); e.stopImmediatePropagation(); first.focus(); }
@@ -393,3 +409,77 @@ document.addEventListener('click', e => {
     const el = e.target.closest('[data-track]');
     if (el && window.gtag) gtag('event', 'click_' + el.dataset.track);
 });
+
+/* PAY OPTIONS CHOOSER */
+(function payChooser() {
+    const res = document.getElementById('pqResult');
+    if (!res) return;
+    const val = n => document.querySelector('input[name="' + n + '"]:checked').value;
+    const OUT = {
+        u: ['Unlimited drinks looks like a good fit. Guests can relax and enjoy as many drinks as they like until our stock runs out.', 'Unlimited drinks until stock runs out'],
+        p: ['Paying per drink looks like a good fit. Each drink is paid for as it is served.', 'Pay per drink'],
+        n: ['Not sure yet? Tell us about your event and we will talk it through.', 'Not sure yet']
+    };
+    let pick = 'n';
+    function show() {
+        const a = val('pq1'), b = val('pq2'), score = (a === 'u') + (b === 'u') - (a === 'p') - (b === 'p');
+        pick = score > 0 ? 'u' : score < 0 ? 'p' : 'n';
+        res.textContent = OUT[pick][0];
+    }
+    document.querySelectorAll('input[name="pq1"],input[name="pq2"]').forEach(i => i.addEventListener('change', show));
+    show();
+    document.getElementById('pqUse').addEventListener('click', () => {
+        const sel = document.getElementById('qPay');
+        if (sel) sel.value = OUT[pick][1];
+        sel.dispatchEvent(new Event('input', { bubbles: true }));
+        const plan = document.getElementById('plan');
+        plan.scrollIntoView({ behavior: reduceMo.matches ? 'auto' : 'smooth' });
+        document.getElementById('qDate').focus({ preventScroll: true });
+    });
+})();
+
+/* REVIEWS (hidden until reviews.js has real reviews) + REVIEW LINK */
+(function reviews() {
+    const list = window.DM_REVIEWS || [];
+    const sec = document.getElementById('reviews');
+    if (sec && list.length) {
+        const box = document.getElementById('reviewList');
+        list.forEach(r => {
+            const card = document.createElement('div'); card.className = 'menu-card';
+            const p = document.createElement('p'); p.textContent = '\u201C' + r.text + '\u201D';
+            const h = document.createElement('h3'); h.textContent = r.name;
+            card.appendChild(p); card.appendChild(h); box.appendChild(card);
+        });
+        sec.hidden = false;
+    }
+    const link = document.getElementById('reviewLink');
+    if (link && window.DM_REVIEW_LINK) { link.href = window.DM_REVIEW_LINK; link.hidden = false; }
+})();
+
+/* SIGNATURE SCROLL STORY: an iced matcha latte comes together as you scroll */
+(function pourStory() {
+    const sec = document.getElementById('pour');
+    if (!sec) return;
+    const $ = id => document.getElementById(id);
+    const milk = $('psMilk'), matcha = $('psMatcha'), stream = $('psStream'), cap = $('psCap');
+    const ices = Array.from(document.querySelectorAll('.ps-ice'));
+    const CAPS = ['Start with ice.', 'Add the milk.', 'Pour the matcha.', 'A little madness in every drink.'];
+    let last = -1, queued = false;
+    function render() {
+        queued = false;
+        const still = reduceMo.matches;
+        let p = 1;
+        if (!still) { const r = sec.getBoundingClientRect(); p = clamp(-r.top / (r.height - window.innerHeight), 0, 1); }
+        const e = (a, b) => clamp((p - a) / (b - a), 0, 1);
+        ices.forEach((ic, i) => { ic.style.transform = 'translateY(' + ((1 - e(0.02 + i * 0.05, 0.22 + i * 0.05)) * -170) + 'px)'; });
+        milk.style.transform = 'scaleY(' + e(0.25, 0.55) + ')';
+        matcha.style.transform = 'scaleY(' + e(0.55, 0.85) + ')';
+        stream.style.opacity = (!still && p > 0.24 && p < 0.88) ? 1 : 0;
+        const idx = p < 0.25 ? 0 : p < 0.55 ? 1 : p < 0.85 ? 2 : 3;
+        if (idx !== last) { cap.textContent = CAPS[idx]; cap.classList.remove('in'); void cap.offsetWidth; cap.classList.add('in'); last = idx; }
+    }
+    function queue() { if (!queued) { queued = true; requestAnimationFrame(render); } }
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue, { passive: true });
+    render();
+})();
