@@ -80,7 +80,15 @@
             </div>
         </section>
 
-        <section class="section featured">
+        <section class="pour" id="pour" aria-label="Scroll to watch an iced matcha latte come together">
+<div class="pour-sticky"><h2 class="sr-only">How an iced matcha latte comes together</h2>
+<svg class="pour-svg" viewBox="0 0 200 300" role="img" aria-label="An iced matcha latte being built"><defs><clipPath id="psClip"><path d="M40 90H160L150 270Q149 284 135 284H65Q51 284 50 270Z"/></clipPath></defs>
+<g clip-path="url(#psClip)"><rect id="psMilk" class="ps-fill" x="0" y="190" width="200" height="100" fill="#f4e6c9"/><rect id="psMatcha" class="ps-fill" x="0" y="120" width="200" height="70" fill="#8fb36a"/></g>
+<path d="M40 90H160L150 270Q149 284 135 284H65Q51 284 50 270Z" fill="none" stroke="#fff9ec" stroke-width="4" stroke-linejoin="round"/>
+<g fill="rgba(255,255,255,.55)"><rect class="ps-ice" x="62" y="150" width="30" height="30" rx="6"/><rect class="ps-ice" x="104" y="140" width="28" height="28" rx="6"/><rect class="ps-ice" x="84" y="178" width="26" height="26" rx="6"/></g>
+<rect id="psStream" x="97" y="0" width="6" height="150" rx="3" fill="#8fb36a" opacity="0"/></svg>
+<p class="ps-cap" id="psCap">Start with ice.</p></div></section>
+<section class="section featured">
             <div class="container featured-grid">
                 <div class="featured-image">
                     <img src="https://drive.google.com/thumbnail?id=1vFt5ICuxZzd8pktXFJh6Yad-jAuXrkeT&sz=w1200" alt="Drinks Madness pistachio matcha" width="600" height="1000" loading="lazy">
@@ -99,12 +107,13 @@
                     <div class="small">MADE FOR YOUR EVENT</div>
                     <h2>A Pour For Every Occasion</h2>
                 </div>
-                <div class="trio"><div class="menu-card"><h3>Weddings</h3><p>Matcha, iced lattes and mojitos for your guests, with a setup styled for your day.</p></div><div class="menu-card"><h3>Corporate Gatherings</h3><p>A polished, premium drinks bar to keep your team and clients refreshed.</p></div><div class="menu-card"><h3>Brand Activations</h3><p>An eye-catching handcrafted drinks bar for your brand's big moment.</p></div></div>
+                <div class="trio"><div class="menu-card"><h3><a href="/weddings/">Weddings</a></h3><p>Matcha, iced lattes and mojitos for your guests, with a setup styled for your day.</p></div><div class="menu-card"><h3><a href="/corporate-events/">Corporate Gatherings</a></h3><p>A polished, premium drinks bar to keep your team and clients refreshed.</p></div><div class="menu-card"><h3><a href="/brand-activations/">Brand Activations</a></h3><p>An eye-catching handcrafted drinks bar for your brand's big moment.</p></div></div>
                 <div class="section-heading" style="margin-bottom:40px">
                     <div class="small">HOW BOOKING WORKS</div>
                     <h2>Three Simple Steps</h2>
                 </div>
                 <div class="trio"><div class="menu-card"><h3><span class="step-num">STEP 1</span>Tell Us The Details</h3><p>Send your date, location and guest count at least a month before.</p></div><div class="menu-card"><h3><span class="step-num">STEP 2</span>Get Your Quote</h3><p>Pricing is custom, based on guest numbers, distance and whether you pay per drink or go unlimited.</p></div><div class="menu-card"><h3><span class="step-num">STEP 3</span>We Bring The Madness</h3><p>Once agreed, we bring the drinks, the setup and the good vibes.</p></div></div>
+                <p class="note-link"><a href="/book/#pay-options">Pay per drink or unlimited? See how event pricing works.</a></p>
                 <div class="center-cta"><a class="button button-primary" data-track="home_quote" href="/book/">REQUEST A QUOTE</a></div>
             </div>
         </section>
@@ -118,6 +127,7 @@
         </section>
     </div>
 
+<section class="section about" id="reviews" hidden><div class="container"><div class="section-heading"><h2>Kind words</h2></div><div class="trio" id="reviewList"></div></div></section>
 </main>
 
 <footer class="footer">
@@ -129,7 +139,11 @@
             <a href="/gallery/">Gallery</a>
             <a href="/about/">About</a>
             <a href="/book/">Book Us</a>
+            <a href="/weddings/">Weddings</a>
+            <a href="/corporate-events/">Corporate Events</a>
+            <a href="/brand-activations/">Brand Activations</a>
             <a href="/privacy/">Privacy Policy &amp; Legal</a>
+            <a id="reviewLink" href="#" hidden target="_blank" rel="noopener noreferrer">Leave a review</a>
             <a href="#" onclick="openCookieBanner(); return false;">Cookie Settings</a>
             <a href="mailto:info@drinksmadness.com" target="_blank" rel="noopener noreferrer">Contact Us</a>
         </div>
@@ -145,6 +159,7 @@
 </div>
 <div class="mobile-bar"><a class="button button-primary" href="/book/" data-track="bar_quote">Request a quote</a><a class="button button-secondary" href="https://wa.me/447442453031" target="_blank" rel="noopener noreferrer" data-track="bar_whatsapp">WhatsApp</a></div>
 
+<script src="/reviews.js"></script>
 <script src="/app.js" defer></script>
 </body>
 </html>
