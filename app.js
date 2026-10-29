@@ -1,4 +1,3 @@
-
 const PAGE_URLS = { home: '/', menu: '/menu/', gallery: '/gallery/', about: '/about/', book: '/book/', privacy: '/privacy/' };
 function switchPage(name) { location.href = PAGE_URLS[name] || '/'; }
 
@@ -361,6 +360,27 @@ document.addEventListener('click', e => {
     }
     ['qDate', 'qLoc', 'qGuests', 'qType', 'qPay'].forEach(id => g(id).addEventListener('input', update));
     update();
+
+    /* Inline checks: each problem is shown next to its field and focus moves to the first one */
+    const FIELDS = [['qDate', 'qDateErr', 'Choose your event date.'], ['qLoc', 'qLocErr', 'Add the area or venue.'], ['qGuests', 'qGuestsErr', 'Add roughly how many guests.']];
+    function validate() {
+        let first = null;
+        FIELDS.forEach(([id, errId, msg]) => {
+            const el = g(id);
+            const bad = !el.value.trim() || (id === 'qGuests' && Number(el.value) < 1);
+            el.setAttribute('aria-invalid', bad ? 'true' : 'false');
+            g(errId).textContent = bad ? msg : '';
+            if (bad && !first) first = el;
+        });
+        const d = g('qDate').value;
+        if (d && (new Date(d) - new Date()) / 864e5 < 30) g('qDateErr').textContent = 'We ask for bookings at least one month in advance.';
+        return first;
+    }
+    FIELDS.forEach(([id, errId]) => g(id).addEventListener('input', () => { g(id).setAttribute('aria-invalid', 'false'); g(errId).textContent = ''; }));
+    ['qMail', 'qWa'].forEach(id => g(id).addEventListener('click', e => {
+        const first = validate();
+        if (first) { e.preventDefault(); e.stopImmediatePropagation(); first.focus(); }
+    }));
 })();
 
 /* OLD #menu STYLE LINKS GO TO THE NEW PAGES */
