@@ -3,6 +3,7 @@
      { name: "First name", text: "Their words.", date: "2026-11-01" },
    Only add reviews that customers have really given you. */
 window.DM_REVIEWS = [
+  { name: "Yusuf A. S.", text: "I got the vanilla matcha and it was banging." },
 ];
 /* GOOGLE REVIEW LINK. Paste your Google review link between the quotes. A "Leave a review" link then appears in the footer.
    Leave it empty ("") and the link stays hidden. */
